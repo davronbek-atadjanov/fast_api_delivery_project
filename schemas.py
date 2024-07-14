@@ -2,8 +2,8 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-
 class SignUpModel(BaseModel):
+    id: Optional[int]
     username: str
     email: str
     password: str
@@ -11,8 +11,8 @@ class SignUpModel(BaseModel):
     is_active: Optional[bool]
 
     class Config:
-        from_attributes = True
-        json_schema_extra = {
+        orm_mode = True
+        schema_extra = {
             "example": {
                 "username": "Davronbek",
                 "email": "davronbek@gmail.com",
@@ -22,3 +22,8 @@ class SignUpModel(BaseModel):
             }
         }
 
+
+
+class Login(BaseModel):
+    username_or_email: str
+    password: str
