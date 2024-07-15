@@ -11,7 +11,7 @@ class SignUpModel(BaseModel):
     is_active: Optional[bool]
 
     class Config:
-        orm_mode = True
+        orm_model = True
         schema_extra = {
             "example": {
                 "username": "Davronbek",
@@ -23,7 +23,34 @@ class SignUpModel(BaseModel):
         }
 
 
-
 class Login(BaseModel):
     username_or_email: str
     password: str
+
+
+class OrderModel(BaseModel):
+    id: Optional[int]
+    quantity: int
+    order_statuses: Optional[str] = "PENDING"
+    user_id: Optional[int]
+    product_id: Optional[int]
+
+    class Config:
+        orm_model = True
+        schema_extra = {
+            "example": {
+                "quantity": "2"
+            }
+        }
+
+
+class OrderStatusModel(BaseModel):
+    order_statuses: Optional[str] = "PENDING"
+
+    class Config:
+        orm_model = True
+        schema_extra = {
+            "example": {
+                "order_statuses": "PENDING"
+            }
+        }
