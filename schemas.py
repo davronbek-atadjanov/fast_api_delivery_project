@@ -33,7 +33,7 @@ class OrderModel(BaseModel):
     quantity: int
     order_statuses: Optional[str] = "PENDING"
     user_id: Optional[int]
-    product_id: Optional[int]
+    product_id: int
 
     class Config:
         orm_model = True
@@ -54,3 +54,20 @@ class OrderStatusModel(BaseModel):
                 "order_statuses": "PENDING"
             }
         }
+
+
+class ProductModel(BaseModel):
+    id: Optional[int]
+    name: str
+    price: int
+
+    class Config:
+        orm_model = True
+        schema_extra = {
+            "example": {
+                "name": "Taom nomi",
+                "price": 50000
+            }
+        }
+
+
